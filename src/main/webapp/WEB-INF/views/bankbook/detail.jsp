@@ -33,9 +33,9 @@
 		</c:otherwise>
 	</c:choose>
 	
-	<a href="./update.do?bookNum=${dto.bookNum}">수정</a>
-	<a href="./delete.do?bookNum=${dto.bookNum}">삭제</a>
-	<a href="./list.do">뒤로가기</a>
+	<a href="./update?bookNum=${dto.bookNum}">수정</a>
+	<a href="./delete?bookNum=${dto.bookNum}">삭제</a>
+	<a href="./list">뒤로가기</a>
 	</section>
 	
 	

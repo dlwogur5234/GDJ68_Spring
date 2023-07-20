@@ -41,8 +41,8 @@
 			      </c:if>
 			      <c:if test="${member != null }">
 			      	<ul class="nav">
-			      		<a href="/member/logout.do"><li class="text-white nav-item me-3">로그아웃</li></a>
-			      		<a href="/member/mypage.do"><li class="text-white nav-item me-3">마이페이지</a></li>
+			      		<a href="/member/logout"><li class="text-white nav-item me-3">로그아웃</li></a>
+			      		<a href="/member/mypage"><li class="text-white nav-item me-3">마이페이지</a></li>
 			      	</ul>
 			      </c:if>
 		      </nav>

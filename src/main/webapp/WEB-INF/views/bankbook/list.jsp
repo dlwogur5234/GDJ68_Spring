@@ -33,7 +33,7 @@
 				<c:forEach items="${requestScope.list}" var="d" varStatus="i">
 					<tr>
 						<td>
-							<a href="./detail.do?bookNum=${d.bookNum}" class="text-white text-decoration-none">${d.bookName}</a>
+							<a href="./detail?bookNum=${d.bookNum}" class="text-white text-decoration-none">${d.bookName}</a>
 						</td>
 						<td>
 							${d.bookRate} ${i.index}

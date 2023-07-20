@@ -14,7 +14,7 @@
 
 	<h1 class="text-center">Add Page</h1>
 	<section class="text-center">
-		<form action="./add.do" method="post" >
+		<form action="./add" method="post" >
 			<div class="input-group mb-3 flex-nowrap">	
 				<span class="input-group-text" id="basic-addon1">상품명</span>
 				<input type="text" name="bookName" class="form-control">
