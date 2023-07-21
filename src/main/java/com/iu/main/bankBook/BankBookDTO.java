@@ -3,7 +3,7 @@ package com.iu.main.bankBook;
 public class BankBookDTO {
 	private Long bookNum;
 	private String bookName;
-	private String bookContent;
+	private String bookContents;
 	public Long getBookNum() {
 		return bookNum;
 	}
@@ -16,11 +16,12 @@ public class BankBookDTO {
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
-	public String getBookContent() {
-		return bookContent;
+	
+	public String getBookContents() {
+		return bookContents;
 	}
-	public void setBookContent(String bookContent) {
-		this.bookContent = bookContent;
+	public void setBookContents(String bookContents) {
+		this.bookContents = bookContents;
 	}
 	public Double getBookRate() {
 		return bookRate;

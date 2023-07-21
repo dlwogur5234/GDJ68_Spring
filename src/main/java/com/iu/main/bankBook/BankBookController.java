@@ -33,11 +33,33 @@ public class BankBookController {
 		return mv;
 	}
 	@RequestMapping(value = "add")
-	public String getAdd() throws Exception{
-		return "bankbook/add";
+	public void setAdd() throws Exception{
+		
+	}
+	@RequestMapping(value = "add" , method = RequestMethod.POST)
+	public String setAdd(BankBookDTO bankBookDTO) throws Exception{
+		int result=bankBookService.setAdd(bankBookDTO);
+		return "redirect:./list";
 	}
 	@RequestMapping(value = "update")
-	public String getUpdate() throws Exception{
-		return "bankbook/update";
+	public void setUpdate(BankBookDTO bankBookDTO,Model mv) throws Exception{
+		bankBookDTO = bankBookService.getDetail(bankBookDTO);
+		mv.addAttribute("dto", bankBookDTO);
+	}
+	@RequestMapping(value = "update" , method = RequestMethod.POST)
+	public String setUpdate(BankBookDTO bankBookDTO) throws Exception{
+		int result=bankBookService.setUpdate(bankBookDTO);
+		//return "redirect:./list";//list로 이동
+		return "redirect:./detail?bookNum="+bankBookDTO.getBookNum();
+	}
+	/*
+	 * @RequestMapping(value = "update" , method = RequestMethod.POST) public String
+	 * getUpdate(BankBookDTO bankBookDTO) throws Exception{ int
+	 * result=bankBookService.setUpdate(bankBookDTO); return "reirect:./list"; }
+	 */
+	@RequestMapping(value = "delete")
+	public String setDelete(Long bookNum) throws Exception{
+		int result=bankBookService.setDelete(bookNum);
+		return "redirect:./list";//list로 이동
 	}
 }
