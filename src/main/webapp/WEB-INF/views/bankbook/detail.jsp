@@ -13,15 +13,15 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<h1 class="text-center">Detail Page</h1>
 	
-	<%-- <%BankBookDTO bankBookDTO = (BankBookDTO)request.getAttribute("dto"); %> --%>
+	 <%-- <%BankBookDTO bankBookDTO = (BankBookDTO)request.getAttribute("dto"); %> --%>
 	
 	<section class="text-center">
 	<%-- <h3><%= bankBookDTO.getBookName() %></h3> --%>
 	<!-- Getter의 이름 : 메서드에서 get을 제외하고 첫번째 글자를 소문자로 바꾼것 -->
 	<h1>${requestScope.dto.bookName}</h1>
-	<div>
+	<%-- <div>
 		${dto.bookContents}
-	</div>
+	</div> --%>
 	<h1>${dto.bookRate}</h1>
 	
 	<c:choose>
