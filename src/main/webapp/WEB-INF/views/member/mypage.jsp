@@ -12,15 +12,20 @@
 	
 	<c:import url="../temp/header.jsp"></c:import>
 	
-		<div class="mb-3">
-			<label for="exampleInputEmail1" class="form-label">ID</label>	
-			<input type="text" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${ member.id}" disabled="disabled">
-		</div>
+	
 		<div>
 			<label for="exampleInputEmail1" class="form-label">name</label>	
 			<input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${member.name }" disabled="disabled">
 		</div>
-			<input type="submit" value="수정">
+		<div>
+			<label for="exampleInputEmail1" class="form-label">email</label>	
+			<input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${member.email }" disabled="disabled">
+		</div>
+		<div>
+			<label for="exampleInputEmail1" class="form-label">birth</label>	
+			<input type="date" name="birth" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${member.birth }" disabled="disabled">
+		</div>
+			<a  class="btn btn-primary" href="./memberUpdate">회원수정</a>
 	
 </body>
 </html>

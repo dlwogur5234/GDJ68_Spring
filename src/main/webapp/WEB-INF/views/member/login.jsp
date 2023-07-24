@@ -15,11 +15,11 @@
 	<form action="./login.do" method="post">
 		<div class="mb-3">
 			<label for="exampleInputEmail1" class="form-label">ID</label>	
-			<input type="text" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+			<input type="text" name="id" class="form-control" value="${dlwogur}" id="exampleInputEmail1" aria-describedby="emailHelp">
 		</div>
 		<div>
 			<label for="exampleInputEmail1" class="form-label">PW</label>	
-			<input type="password" name="pw" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+			<input type="password" name="pw" value="${1234 }" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 		</div>
 			<input type="submit" value="로그인">
 	</form>

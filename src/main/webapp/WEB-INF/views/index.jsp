@@ -16,13 +16,13 @@
 	<!-- Latest compiled JavaScript -->
 	<c:if test="${sessionScope.member ne null }"> <!-- !=null , not empty --> <!-- Scope 생략가능 -->
 		<h1 class="text-center">로그인 상태</h1>
-		
+		<img src="../../resources/images/img2.jpeg">
 	</c:if>
 	<c:if test="${empty member}">
 	<h1 class="text-center">비로그인 상태</h1>
 	</c:if>
 	
-	<img src="../../resources/images/img2.jpeg">
+	
 	
 
 </body>
