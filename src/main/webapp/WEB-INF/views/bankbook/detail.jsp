@@ -33,6 +33,11 @@
 		</c:otherwise>
 	</c:choose>
 	
+	<c:forEach items="${dto.fileDTOs}" var="f">
+		<img alt="" src="../resources/upload/bankBook/${f.fileName}">
+		<p>gd</p>
+	</c:forEach>
+	
 	<a href="./update?bookNum=${dto.bookNum}">수정</a>
 	<a href="./delete?bookNum=${dto.bookNum}">삭제</a>
 	<a href="./list">뒤로가기</a>

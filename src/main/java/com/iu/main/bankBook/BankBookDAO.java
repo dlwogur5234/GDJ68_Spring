@@ -22,6 +22,12 @@ public class BankBookDAO {
 	public Long getTotal() throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getTotal");
 	}
+	public long getSeqence() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getSeqence");
+	}
+	public int setFileAdd(BankFileDTO bankFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileAdd", bankFileDTO);
+	}
 	//List
 	public List<BankBookDTO> getList(Pager pager) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getList",pager);

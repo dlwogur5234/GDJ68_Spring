@@ -7,6 +7,10 @@
   	<select id="getTotal" resultType="Long">
   		SELECT COUNT(BOOKNUM) FROM BANKBOOK
   	</select>
+  	
+  	
+  	
+  	
   
   	<select id="getList" parameterType="com.iu.main.util.Pager" resultType="BankBookDTO">
 		 SELECT BOOKNUM,BOOKNAME,BOOKRATE,BOOKSALE FROM 
@@ -18,12 +22,41 @@
 		WHERE S.R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   
-	<select id="getDetail" resultType="BankBookDTO" parameterType="BankBookDTO">
-		SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
+	<select id="getDetail" resultMap="getDetailResult"  parameterType="BankBookDTO">
+		SELECT BB.*,BF.*
+			FROM BANKBOOK BB 
+			LEFT OUTER JOIN BANKFILE BF
+			ON BB.BOOKNUM = BF.BOOKNUM
+			WHERE BB.BOOKNUM = #{bookNum}
 	</select>
 	
+	<resultMap type="BankBookDTO" id="getDetailResult">
+		<id column="BOOKNUM" property="bookNum"/>
+		<result column="BOOKNAME" property="bookName"/>
+		<result column="BOOKCONTENTS" property="bookContents"/>
+		<result column="BOOKRATE" property="bookRate"/>
+		<result column="BOOKSALE" property="bookSale"/>
+		
+		<collection property="fileDTOs" javaType="java.util.List" ofType="BankFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORIGINALNAME" property="originalName"/>
+		</collection>
+	</resultMap>
+	
+	<insert id="setFileAdd" parameterType="BankFileDTO">
+  		INSERT INTO BANKFILE (FILENUM,BOOKNUM,ORIGINALNAME,FILENAME) VALUES (BANKFILE_SEQ.NEXTVAL,#{bookNum},#{originalName},#{fileName})
+  	</insert>
+  	
+	<select id="getSequence" resultType="Long">
+  		SELECT BANKFILE_SEQ.NEXTVAL FROM DUAL
+  	</select>
+	
 	<insert id="setAdd" parameterType="BankBookDTO">
-		INSERT INTO BANKBOOK VALUES (BANK_SEQ.NEXTVAL,#{bookName},#{bookRate},#{bookSale},#{bookContents})
+		<selectKey keyProperty="bookNum" resultType="Long" order="BEFORE">
+			SELECT BANKFILE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO BANKBOOK VALUES (#{bookNum},#{bookName},#{bookRate},#{bookSale},#{bookContents})
 	</insert>
 	
 	<delete id="setDelete" parameterType="Long">

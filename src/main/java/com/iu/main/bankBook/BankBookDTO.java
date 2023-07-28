@@ -1,9 +1,21 @@
 package com.iu.main.bankBook;
 
+import java.util.List;
+
 public class BankBookDTO {
 	private Long bookNum;
 	private String bookName;
 	private String bookContents;
+	private Double bookRate;
+	private Integer bookSale;
+	private List<BankFileDTO> fileDTOs;
+	
+	public List<BankFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<BankFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 	public Long getBookNum() {
 		return bookNum;
 	}
@@ -35,6 +47,5 @@ public class BankBookDTO {
 	public void setBookSale(Integer bookSale) {
 		this.bookSale = bookSale;
 	}
-	private Double bookRate;
-	private Integer bookSale;
+
 }

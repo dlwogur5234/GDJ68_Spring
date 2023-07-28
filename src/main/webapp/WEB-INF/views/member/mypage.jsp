@@ -11,7 +11,10 @@
 <body>
 	
 	<c:import url="../temp/header.jsp"></c:import>
-	
+		
+		<div >
+			<p><img alt="" src="../resources/upload/member/${member.memberFileDTO.fileName}" class="d-block w-70">마이페이지</p>
+		</div>
 	
 		<div>
 			<label for="exampleInputEmail1" class="form-label">name</label>	

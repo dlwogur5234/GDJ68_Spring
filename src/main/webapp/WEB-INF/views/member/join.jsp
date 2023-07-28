@@ -14,7 +14,7 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="text-center">
 		<h1 class="mb-5 mt-3">회원가입</h1>
-		<form action="./join.do" method="post">
+		<form action="./join" method="post" enctype="multipart/form-data">
 				<div class="mb-3">
 				    <label for="exampleInputEmail1" class="form-label">Id</label>
 				    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="id">
@@ -34,8 +34,12 @@
 				  </div>
 				   <div class="mb-3">
 				    <label for="exampleInputPassword1" class="form-label">birthday</label>
-				    <input type="date" class="form-control" id="exampleInputPassword1" name="birthday">
+				    <input type="date" class="form-control" id="exampleInputPassword1" name="birth">
 				  </div>
+				  <div class="mb-3">
+				  <label for="pic" class="form-label">사진첨부</label>
+				  <input type="file" name="pic" class="form-control" id="pic" >
+				  </div> 
 				  
 				 
 				  <button type="submit" class="btn btn-primary">Submit</button>

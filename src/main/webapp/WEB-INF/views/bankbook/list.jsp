@@ -64,6 +64,19 @@
 		  </ul>
 		</nav>
 		
+			<div class="input-group mb-3">
+		 <form action="./list" method="get">
+			  <select name="kind" class="form-select" aria-label="Default select example">
+				  <option value="name">Name</option>
+				  <option value="contents">Contents</option>
+			  </select>
+			  <input type="text" name="search" class="form-control" aria-label="Amount (to the nearest dollar)">
+			   <div class="col-auto">
+			    <button type="submit" class="btn btn-primary">검색</button>
+			  </div>
+		  </form>
+		</div>
+		
 		<%-- <c:forEach begin="1" end="${pager.totalPage}" var="i">
 			<a href="./list?page=${i}" class="ms-3 text-info bg-dark">${i}</a>
 		</c:forEach> --%>

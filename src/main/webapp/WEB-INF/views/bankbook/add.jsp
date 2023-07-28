@@ -14,7 +14,7 @@
 
 	<h1 class="text-center">Add Page</h1>
 	<section class="text-center">
-		<form action="./add" method="post" >
+		<form action="./add" method="post" enctype="multipart/form-data">
 			<div class="input-group mb-3 flex-nowrap">	
 				<span class="input-group-text" id="basic-addon1">상품명</span>
 				<input type="text" name="bookName" class="form-control">
@@ -31,6 +31,18 @@
 				판매가능 <input type="radio" checked name="bookSale" value="1"><br>
 				판매중지 <input type="radio" name="bookSale" value="0"><br>
 			</p>
+			<div class="mb-3">
+				  <label for="pic" class="form-label">사진첨부</label>
+				  <input type="file" name="photos" class="form-control" id="pic" >
+			</div>
+			<div class="mb-3">
+				  <label for="pic" class="form-label">사진첨부</label>
+				  <input type="file" name="photos" class="form-control" id="pic" >
+			</div>
+			<div class="mb-3">
+				  <label for="pic" class="form-label">사진첨부</label>
+				  <input type="file" name="photos" class="form-control" id="pic" >
+			</div>
 		<!-- 	<p>
 			<select name="bookSale">
 				<option selected value="1">판매중</option>
