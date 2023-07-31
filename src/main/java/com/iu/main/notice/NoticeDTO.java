@@ -1,6 +1,9 @@
 package com.iu.main.notice;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.iu.main.bankBook.BankFileDTO;
 
 public class NoticeDTO {
 
@@ -10,9 +13,15 @@ public class NoticeDTO {
 	private String name;
 	private Date createDate;
 	private Long hit;
+	private List<NoticeFileDTO> fileDTOs;
 	
 	
-	
+	public List<NoticeFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<NoticeFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 	public Long getNoticeNum() {
 		return noticeNum;
 	}

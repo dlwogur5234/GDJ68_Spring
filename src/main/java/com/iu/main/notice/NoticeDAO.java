@@ -25,6 +25,10 @@ public class NoticeDAO {
 		return sqlSession.selectList(NAMESPACE+"getList",pager);
 	}
 	
+	public int setFileAdd(NoticeFileDTO noticeFileDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"setFileAdd", noticeFileDTO);
+	}
+	
 	public int setAdd(NoticeDTO noticeDTO) throws Exception {
 		
 		return sqlSession.insert(NAMESPACE+"setAdd",noticeDTO);

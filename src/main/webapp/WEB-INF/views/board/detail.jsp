@@ -29,6 +29,10 @@
 					<td>${dto.name}</td>
 					<td>${dto.createDate}</td>
 					<td>${dto.hit} </td>
+					<c:forEach items="${dto.fileDTOs}" var="f">
+					<img alt="" src="../resources/upload/notice/${f.fileName}">
+					
+					</c:forEach>
 				</tr>
 		</tbody>
 		</table>

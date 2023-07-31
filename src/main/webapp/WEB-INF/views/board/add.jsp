@@ -12,11 +12,23 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<h1 class="mb-5 text-center">공지사항 추가</h1>
 	
-	<form class="mb-5 text-center form-control" action="./add" method="post">
+	<form class="mb-5 text-center form-control" action="./add" method="post" enctype="multipart/form-data">
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">제목</span><input  type="text" name="subject"></div><br>
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">내용</span><textarea class="input-group" rows="" cols="" name="contents"></textarea></div><br>
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">작성자</span><input  type="text" name="name"></div><br>
 		
+		<div class="mb-3">
+				  <label for="pic" class="form-label">사진첨부</label>
+				  <input type="file" name="photos" class="form-control" id="pic" >
+			</div>
+			<div class="mb-3">
+				  <label for="pic" class="form-label">사진첨부</label>
+				  <input type="file" name="photos" class="form-control" id="pic" >
+			</div>
+			<div class="mb-3">
+				  <label for="pic" class="form-label">사진첨부</label>
+				  <input type="file" name="photos" class="form-control" id="pic" >
+			</div>
 		
 		
 		

@@ -18,13 +18,45 @@
 		WHERE S.R BETWEEN #{startRow} AND #{lastRow}
   	</select>
   	
-  	<insert id="setAdd" parameterType="NoticeDTO">
-  		INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,#{subject},#{contents},#{name},SYSDATE,0)
+  	
+  	
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
+		SELECT NT.*,NF.*
+		FROM NOTICE NT
+		LEFT OUTER JOIN NOTICEFILE NF
+		ON NT.NOTICENUM = NF.NOTICENUM
+		WHERE NT.NOTICENUM = #{noticeNum}		
+  	</select>
+  	
+  	<resultMap type="NoticeDTO" id="getDetailResult">
+  		<id column="NOTICENUM" property="noticeNum"/>
+  		<result column="SUBJECT" property="subject"/>
+  		<result column="CONTENTES" property="contents"/>
+  		<result column="NAME" property="name"/>
+  		<result column="CREATEDATE" property="createDate"/>
+  		<result column="HIT" property="hit"/>
+  		
+  		<collection property="fileDTOs" javaType="java.util.List" ofType="NoticeFileDTO">
+  			<id column="NOTICENUM" property="noticeNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORIGINALNAME" property="originalName"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<insert id="setFileAdd" parameterType="NoticeFileDTO">
+  		INSERT INTO NOTICEFILE (FILENUM,NOTICENUM,ORIGINALNAME,FILENAME) VALUES (NOTICEFILE_SEQ.NEXTVAL,#{noticeNum},#{originalName},#{fileName})
   	</insert>
   	
-  	<select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
-		SELECT * FROM NOTICE WHERE NOTICENUM=#{noticeNum}  	
+	<select id="getSequence" resultType="Long">
+  		SELECT NOTICEFILE_SEQ.NEXTVAL FROM DUAL
   	</select>
+	
+	<insert id="setAdd" parameterType="NoticeDTO">
+		<selectKey keyProperty="noticeNum" resultType="Long" order="BEFORE">
+			SELECT NOTICEFILE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO NOTICE VALUES (#{noticeNum},#{subject},#{contents},#{name},sysdate,0)
+	</insert>
   	
   	<update id="setUpdate" parameterType="NoticeDTO">
 		UPDATE NOTICE SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NOTICENUM=#{noticeNum}  	
