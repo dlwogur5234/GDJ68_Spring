@@ -3,22 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.iu.main.qna.QnaDAO">
+  <mapper namespace="com.iu.main.board.qna.QnaDAO">
   	<select id="getTotal" resultType="Long">
-  		SELECT COUNT(QNANUM) FROM QNA
+  		SELECT COUNT(NUM) FROM QNA
   	</select>
   	
   	
   	
   	
   
-  	<select id="getList" parameterType="com.iu.main.util.Pager" resultType="com.iu.main.qna.QnaDTO">
-		 SELECT QNANUM,NAME,SUBJECT,CREATEDATE,HIT FROM 
+  	<select id="getList" parameterType="com.iu.main.util.Pager" resultType="com.iu.main.board.qna.QnaDTO">
+		 SELECT NUM,NAME,SUBJECT,CREATEDATE,HIT FROM 
 			(
 				SELECT ROWNUM R,Q.*
 				FROM QNA Q
-				ORDER BY Q.QNANUM DESC
+				ORDER BY Q.NUM DESC
 			) S
 		WHERE S.R BETWEEN #{startRow} AND #{lastRow}
   	</select>
+  	
+  	<insert id="setAdd" parameterType="com.iu.main.board.qna.QnaDTO">
+  		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+  			SELECT QNA_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO QNA (QNANUM,NAME,SUBJECT,CONTENTS,CREATEDATE,HIT,REF,STEP,DEPTH)
+  		VALUES(#{num},#{name},#{subject},#{contents},#{createDate},sysdate,0,0,0,0)
+  	</insert>
    </mapper>

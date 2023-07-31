@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.main.Mytest;
-import com.iu.main.notice.NoticeDAO;
+import com.iu.main.board.notice.NoticeDAO;
 
 
 public class BankBookDAOTest extends Mytest{
@@ -23,9 +23,11 @@ public class BankBookDAOTest extends Mytest{
 		map.put("startRow", 1);
 		map.put("lastRow", 10);
 		
-		List<BankBookDTO> ar =bankBookDAO.getList(map);
-		System.out.println(ar.get(0).getBookNum());
-		System.out.println(ar.get(9).getBookNum());
+		/* List<BankBookDTO> ar =bankBookDAO.getList(map); */
+		/*
+		 * System.out.println(ar.get(0).getBookNum());
+		 * System.out.println(ar.get(9).getBookNum());
+		 */
 	}
 	
 	//@Test

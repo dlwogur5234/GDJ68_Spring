@@ -24,22 +24,21 @@
 		</thead>
 		<tbody>
 				<tr>
-					<td>${dto.noticeNum}</td>
+					<td>${dto.num}</td>
 					<td>${dto.subject}</td>
 					<td>${dto.name}</td>
 					<td>${dto.createDate}</td>
 					<td>${dto.hit} </td>
 					<c:forEach items="${dto.fileDTOs}" var="f">
 					<img alt="" src="../resources/upload/notice/${f.fileName}">
-					
 					</c:forEach>
 				</tr>
 		</tbody>
 		</table>
 	
 	
-	<a href="./update?noticeNum=${dto.noticeNum}">수정</a>
-	<a href="./delete?noticeNum=${dto.noticeNum}">삭제</a>
+	<a href="./update?num=${dto.num}">수정</a>
+	<a href="./delete?num=${dto.num}">삭제</a>
 <%-- 	<c:if test="${dto.bookSale eq 1}">
 		<h1> 판매중 </h1>
 	</c:if>

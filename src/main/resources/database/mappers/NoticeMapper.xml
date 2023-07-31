@@ -3,12 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.iu.main.notice.NoticeDAO">
+  <mapper namespace="com.iu.main.board.notice.NoticeDAO">
   	<select id="getTotal" resultType="Long">
   		SELECT COUNT(NOTICENUM) FROM NOTICE
   	</select>
   	
-  	<select id="getList" resultType="NoticeDTO">
+  	<select id="getList" resultMap="getDetailResult" parameterType="NoticeDTO">
   		SELECT NOTICENUM,SUBJECT,CONTENTS,NAME,CREATEDATE,HIT FROM 
 			(
 				SELECT ROWNUM R,N.*
@@ -20,16 +20,17 @@
   	
   	
   	
+  	
   	<select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
 		SELECT NT.*,NF.*
 		FROM NOTICE NT
 		LEFT OUTER JOIN NOTICEFILE NF
 		ON NT.NOTICENUM = NF.NOTICENUM
-		WHERE NT.NOTICENUM = #{noticeNum}		
+		WHERE NT.NOTICENUM = #{num}		
   	</select>
   	
   	<resultMap type="NoticeDTO" id="getDetailResult">
-  		<id column="NOTICENUM" property="noticeNum"/>
+  		<id column="NOTICENUM" property="num"/>
   		<result column="SUBJECT" property="subject"/>
   		<result column="CONTENTES" property="contents"/>
   		<result column="NAME" property="name"/>
@@ -52,21 +53,21 @@
   	</select>
 	
 	<insert id="setAdd" parameterType="NoticeDTO">
-		<selectKey keyProperty="noticeNum" resultType="Long" order="BEFORE">
+		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
 			SELECT NOTICEFILE_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO NOTICE VALUES (#{noticeNum},#{subject},#{contents},#{name},sysdate,0)
+		INSERT INTO NOTICE VALUES (#{num},#{subject},#{contents},#{name},sysdate,0)
 	</insert>
   	
   	<update id="setUpdate" parameterType="NoticeDTO">
-		UPDATE NOTICE SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NOTICENUM=#{noticeNum}  	
+		UPDATE NOTICE SET SUBJECT=#{subject}, CREATEDATE=#{createDate}, CONTENTS=#{contents} WHERE NOTICENUM=#{num}  	
   	</update>
   	
   	<delete id="setDelete" parameterType="NoticeDTO">
-  		DELETE NOTICE WHERE NOTICENUM=#{noticeNum}
+  		DELETE NOTICE WHERE NOTICENUM=#{num}
   	</delete>
   	
   	<update id="setHitCount" parameterType="NoticeDTO">
-  		UPDATE NOTICE SET HIT=HIT+1 WHERE NOTICENUM=#{noticeNum}
+  		UPDATE NOTICE SET HIT=HIT+1 WHERE NOTICENUM=#{num}
   	</update>
   </mapper>
