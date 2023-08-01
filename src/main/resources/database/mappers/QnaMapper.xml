@@ -13,20 +13,82 @@
   	
   
   	<select id="getList" parameterType="com.iu.main.util.Pager" resultType="com.iu.main.board.qna.QnaDTO">
-		 SELECT NUM,NAME,SUBJECT,CREATEDATE,HIT FROM 
-			(
-				SELECT ROWNUM R,Q.*
-				FROM QNA Q
-				ORDER BY Q.NUM DESC
-			) S
-		WHERE S.R BETWEEN #{startRow} AND #{lastRow}
+	SELECT *
+	FROM(
+		SELECT ROWNUM R, B.* 
+			FROM(SELECT * 
+				 FROM QNA	
+				  ORDER BY REF DESC, STEP ASC
+				) B
+				)
+			WHERE
+				R BETWEEN #{startRow} AND #{lastRow}
+	
   	</select>
   	
   	<insert id="setAdd" parameterType="com.iu.main.board.qna.QnaDTO">
   		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
   			SELECT QNA_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
-  		INSERT INTO QNA (QNANUM,NAME,SUBJECT,CONTENTS,CREATEDATE,HIT,REF,STEP,DEPTH)
-  		VALUES(#{num},#{name},#{subject},#{contents},#{createDate},sysdate,0,0,0,0)
+  		INSERT INTO QNA (NUM,NAME,SUBJECT,CONTENTS,CREATEDATE,HIT,REF,STEP,DEPTH)
+  		VALUES(#{num},#{name},#{subject},#{contents},sysdate,0,#{num},0,0)
   	</insert>
+  	
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="QnaDTO">
+		SELECT Q.*,QF.*
+		FROM QNA Q
+		LEFT OUTER JOIN QNAFILE QF
+		ON (Q.NUM = QF.QNANUM)
+		WHERE Q.NUM = #{num}		
+  	</select>
+  	
+  	<resultMap type="QnaDTO" id="getDetailResult">
+  		<id column="NUM" property="num"/>
+  		<result column="SUBJECT" property="subject"/>
+  		<result column="CONTENTES" property="contents"/>
+  		<result column="NAME" property="name"/>
+  		<result column="CREATEDATE" property="createDate"/>
+  		<result column="HIT" property="hit"/>
+  		<result column="REF" property="ref"/>
+  		<result column="STEP" property="step"/>
+  		<result column="DEPTH" property="depth"/>
+  		
+  		
+   		<collection property="fileDTOs" javaType="java.util.List" ofType="QnaFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORIGINALNAME" property="originalName"/>
+  		</collection>  
+  	</resultMap>
+  	
+  	<select id="getSequence" resultType="Long">
+  		SELECT QNAFILE_SEQ.NEXTVAL FROM DUAL
+  	</select>
+  	
+  	<insert id="setFileAdd" parameterType="QnaFileDTO">
+  		INSERT INTO QNAFILE (FILENUM,QNANUM,ORIGINALNAME,FILENAME) VALUES (QNAFILE_SEQ.NEXTVAL,#{qnaNum},#{originalName},#{fileName})
+  	</insert>
+  	
+  	
+  	
+  	 <update id="setUpdate" parameterType="QnaDTO">
+  		UPDATE QNA SET SUBJECT = #{subject}, CONTENTS=#{contents} WHERE NUM = #{num}
+  	</update>
+  	
+  	<insert id="setReplyAdd" parameterType="QnaDTO">
+  		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+  			SELECT QNA_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO QNA (NUM,NAME,SUBJECT,CONTENTS,CREATEDATE,HIT,REF,STEP,DEPTH) VALUES (#{num},#{name},#{subject},#{contents},sysdate,0,#{ref},#{step},#{depth})
+  	</insert>
+  	
+  	<update id="setStepUpdate" parameterType="QnaDTO">
+  		UPDATE QNA SET STEP = STEP+1 WHERE REF=#{ref} AND STEP > #{step}
+  	</update>
+  	
+  	<delete id="setDelete" parameterType="QnaDTO">
+  		DELETE QNA WHERE NUM = #{num}
+  	</delete>
+  	
+ 
    </mapper>

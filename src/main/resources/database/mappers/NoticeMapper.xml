@@ -25,7 +25,7 @@
 		SELECT NT.*,NF.*
 		FROM NOTICE NT
 		LEFT OUTER JOIN NOTICEFILE NF
-		ON NT.NOTICENUM = NF.NOTICENUM
+		ON (NT.NOTICENUM = NF.NOTICENUM)
 		WHERE NT.NOTICENUM = #{num}		
   	</select>
   	
@@ -38,7 +38,7 @@
   		<result column="HIT" property="hit"/>
   		
   		<collection property="fileDTOs" javaType="java.util.List" ofType="NoticeFileDTO">
-  			<id column="NOTICENUM" property="noticeNum"/>
+  			<id column="FILENUM" property="fileNum"/>
   			<result column="FILENAME" property="fileName"/>
   			<result column="ORIGINALNAME" property="originalName"/>
   		</collection>
@@ -54,7 +54,7 @@
 	
 	<insert id="setAdd" parameterType="NoticeDTO">
 		<selectKey keyProperty="num" resultType="Long" order="BEFORE">
-			SELECT NOTICEFILE_SEQ.NEXTVAL FROM DUAL
+			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO NOTICE VALUES (#{num},#{subject},#{contents},#{name},sysdate,0)
 	</insert>

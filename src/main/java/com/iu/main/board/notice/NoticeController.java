@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,10 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	@ModelAttribute("board") //RequestMapping 들이 실행되기전에 미리실행 
+	public String getBoardName() {
+		return "notice";
+	}
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getList(Pager pager,Model model) throws Exception{
@@ -48,8 +53,9 @@ public class NoticeController {
 	public ModelAndView getDetail(NoticeDTO noticeDTO, ModelAndView mav) throws Exception{
 		int result = noticeService.setHitUpdate(noticeDTO);
 		BoardDTO boardDTO=noticeService.getDetail(noticeDTO);
-		mav.addObject("dto",noticeDTO);
+		mav.addObject("dto",boardDTO);
 		mav.setViewName("board/detail");
+		System.out.println("detail2");
 		
 		return mav;
 	}

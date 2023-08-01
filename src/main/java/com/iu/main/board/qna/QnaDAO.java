@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.iu.main.board.BoardDAO;
 import com.iu.main.board.BoardDTO;
+import com.iu.main.board.qna.QnaFileDTO;
 import com.iu.main.util.Pager;
 
 @Repository
@@ -35,20 +36,36 @@ public class QnaDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"setAdd", boardDTO);
 	}
+	
+	public int setFileAdd(QnaFileDTO qnaFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFileAdd", qnaFileDTO);
+	}
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE+"setUpdate", boardDTO);
+	}
+	
+	public long getSequence()  throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getsequence");
 	}
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
 	}
 	@Override
 	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public int setReplyAdd(QnaDTO qnaDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setReplyAdd", qnaDTO);
+	}
+	
+	public int setStepUpdate(QnaDTO qnaDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setStepUpdate", qnaDTO);
 	}
 	
 	

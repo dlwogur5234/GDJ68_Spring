@@ -22,10 +22,10 @@
 		</thead>
 		<tbody>
 				<tr>
-					<td><input type="hidden" name="num" value="${dto.num }">${dto.num}</td>
+					<td><input type="hidden" name="num" value="${dto.num}">${dto.num}</td>
 					<td><input type="text" name="subject" value="${dto.subject}"></td>
 					<td>${dto.name}</td>
-					<td><input type="date" name="createDate" value="${dto.createDate}"></td>
+					<%-- <td><input type="date" name="createDate" value="${dto.createDate}"></td> --%>
 					<td><textarea rows="" cols="" name="contents">${dto.contents}</textarea></td>
 				</tr>
 		</tbody>

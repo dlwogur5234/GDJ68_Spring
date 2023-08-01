@@ -12,7 +12,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-	<h1 class="mb-5 text-center" >QNA 게시판</h1>
+	<h1 class="mb-5 text-center" >${board} 게시판</h1>
 	<!-- 표현식 -->
 
 	<table class="table table-dark table-hover">

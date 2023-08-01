@@ -24,7 +24,7 @@
 		</thead>
 		<tbody>
 				<tr>
-					<td>${dto.noticeNum}</td>
+					<td>${dto.num}</td>
 					<td>${dto.subject}</td>
 					<td>${dto.name}</td>
 					<td>${dto.createDate}</td>
@@ -34,8 +34,8 @@
 		</table>
 	
 	
-	<a href="./update?noticeNum=${dto.noticeNum}">수정</a>
-	<a href="./delete?noticeNum=${dto.noticeNum}">삭제</a>
+	<a href="./update?noticeNum=${dto.num}">수정</a>
+	<a href="./delete?noticeNum=${dto.num}">삭제</a>
 <%-- 	<c:if test="${dto.bookSale eq 1}">
 		<h1> 판매중 </h1>
 	</c:if>

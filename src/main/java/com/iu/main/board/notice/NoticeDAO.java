@@ -26,8 +26,8 @@ public class NoticeDAO implements BoardDAO{
 		return sqlSession.selectList(NAMESPACE+"getList",pager);
 	}
 	
-	public long getSeqence() throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getSequnce");
+	public long getSequence() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getSequence");
 	}
 	
 	public int setFileAdd(NoticeFileDTO noticeFileDTO) throws Exception{

@@ -10,11 +10,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.main.bankBook.BankFileDTO;
 import com.iu.main.board.BoardDTO;
+import com.iu.main.board.BoardService;
 import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
 
 @Service
-public class NoticeService {
+public class NoticeService implements BoardService {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
@@ -30,10 +31,10 @@ public class NoticeService {
 		
 		return noticeDAO.getList(pager);
 	}
-	
+	@Override
 	public int setAdd(BoardDTO boardDTO,MultipartFile [] photos, HttpSession session) throws Exception {
 		
-		String path ="/resources/upload/notice";
+		String path ="/resources/upload/board";
 		
 		int result = noticeDAO.setAdd(boardDTO);
 		
@@ -52,17 +53,17 @@ public class NoticeService {
 		return result;
 		
 	}
-	
+	@Override
 	public NoticeDTO getDetail(BoardDTO boardDTO) throws Exception {
 		
 		return noticeDAO.getDetail(boardDTO);
 	}
-	
+	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		
 		return noticeDAO.setUpdate(boardDTO);
 	}
-	
+	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		
 		return noticeDAO.setDelete(boardDTO);

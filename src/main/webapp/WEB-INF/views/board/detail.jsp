@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -29,8 +29,9 @@
 					<td>${dto.name}</td>
 					<td>${dto.createDate}</td>
 					<td>${dto.hit} </td>
+					
 					<c:forEach items="${dto.fileDTOs}" var="f">
-					<img alt="" src="../resources/upload/notice/${f.fileName}">
+					<img alt="" src="../resources/upload/board/${f.fileName}">
 					</c:forEach>
 				</tr>
 		</tbody>
@@ -39,6 +40,9 @@
 	
 	<a href="./update?num=${dto.num}">수정</a>
 	<a href="./delete?num=${dto.num}">삭제</a>
+	<c:if test="${board ne 'notice'}">
+	<a href="./reply?num=${dto.num}">답글달기</a>
+	</c:if>
 <%-- 	<c:if test="${dto.bookSale eq 1}">
 		<h1> 판매중 </h1>
 	</c:if>

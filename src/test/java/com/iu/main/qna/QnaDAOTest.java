@@ -15,12 +15,9 @@ public class QnaDAOTest extends Mytest{
 	private QnaDAO qnaDAO;
 	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	public void setAddTest() throws Exception{
 		QnaDTO boardDTO = new QnaDTO();
-		boardDTO.setName("11");
+		boardDTO.setName("id1");
 		boardDTO.setSubject("test2");
 		boardDTO.setContents("test contents2");
 		

@@ -12,7 +12,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-	<h1 class="mb-5 text-center" >공지사항 게시판</h1>
+	<h1 class="mb-5 text-center" >${board} 게시판</h1>
 	<!-- 표현식 -->
 
 	<table class="table table-dark table-hover">
@@ -24,10 +24,17 @@
 			<th>조회수</th>
 		</thead>
 		<tbody>
+		
 			<c:forEach items="${list}" var="n">
 				<tr>
+					
 					<td>${n.num}</td>
-					<td><a class="nav-link active" href="./detail?num=${n.num}">${n.subject}</a> </td>
+					
+					<td><a class="nav-link active" href="./detail?num=${n.num}">
+					<c:catch>
+						<c:forEach begin="1" end="${n.depth}">--</c:forEach>
+					</c:catch>
+					${n.subject}</a> </td>
 					<td>${n.name} </td>
 					<td>${n.createDate}</td>
 					<td>${n.hit} </td>

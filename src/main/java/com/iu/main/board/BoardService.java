@@ -19,7 +19,8 @@ public interface BoardService {
 	public int setUpdate(BoardDTO boardDTO) throws Exception;
 	//delete
 	public int setDelete(BoardDTO boardDTO) throws Exception;
-	
+	//hitUpdate
+	public int setHitUpdate(BoardDTO boardDTO) throws Exception;
 	
 	
 	
