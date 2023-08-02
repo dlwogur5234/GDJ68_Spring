@@ -43,6 +43,9 @@
 	<c:if test="${board ne 'notice'}">
 	<a href="./reply?num=${dto.num}">답글달기</a>
 	</c:if>
+	<button id="del" data-delete-name="num" data-delete-num="${dto.num}">삭제</button>
+
+	<script src="../resources/js/delete.js"></script>
 <%-- 	<c:if test="${dto.bookSale eq 1}">
 		<h1> 판매중 </h1>
 	</c:if>
