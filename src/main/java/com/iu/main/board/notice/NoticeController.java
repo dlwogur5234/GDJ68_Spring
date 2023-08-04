@@ -43,19 +43,28 @@ public class NoticeController {
 
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String setAdd(NoticeDTO noticeDTO,MultipartFile [] photos, HttpSession session) throws Exception {
+	public String setAdd(NoticeDTO noticeDTO,MultipartFile [] photos, HttpSession session ,Model model) throws Exception {
 
 		int result = noticeService.setAdd(noticeDTO,photos,session);
-		return "redirect:./list";
+		String message = "등록 실패";
+		if(result > 0) {
+			message="등록 성공";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("url", "list");
+		return "commons/result";
 	}
 	
 	@RequestMapping(value = "detail")
-	public ModelAndView getDetail(NoticeDTO noticeDTO, ModelAndView mav) throws Exception{
+	public ModelAndView getDetail(NoticeDTO noticeDTO, ModelAndView mav,Model model) throws Exception{
 		int result = noticeService.setHitUpdate(noticeDTO);
 		BoardDTO boardDTO=noticeService.getDetail(noticeDTO);
+		/*
+		 * if(boardDTO != null) { model.addAttribute("dto", boardDTO) }
+		 */
 		mav.addObject("dto",boardDTO);
 		mav.setViewName("board/detail");
-		System.out.println("detail2");
 		
 		return mav;
 	}
@@ -64,6 +73,7 @@ public class NoticeController {
 	public String setUpdate(NoticeDTO noticeDTO, Model model) throws Exception{
 		noticeDTO = noticeService.getDetail(noticeDTO);
 		model.addAttribute("dto", noticeDTO);
+		
 		return "board/update";
 	}
 	
@@ -73,7 +83,7 @@ public class NoticeController {
 		return "redirect:./detail?num=" + noticeDTO.getNum();
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String setDelete(NoticeDTO noticeDTO) throws Exception {
 		int result = noticeService.setDelete(noticeDTO);
 		return "redirect:./list";

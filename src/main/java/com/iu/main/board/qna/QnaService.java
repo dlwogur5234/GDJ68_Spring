@@ -39,7 +39,7 @@ public class QnaService implements BoardService{
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] photos, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
-String path ="/resources/upload/board";
+		String path ="/resources/upload/qna";
 		
 		int result = qnaDAO.setAdd(boardDTO);
 		

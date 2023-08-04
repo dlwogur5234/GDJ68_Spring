@@ -31,19 +31,26 @@
 					<td>${dto.hit} </td>
 					
 					<c:forEach items="${dto.fileDTOs}" var="f">
-					<img alt="" src="../resources/upload/board/${f.fileName}">
+					<img src="../resources/upload/notice/${f.fileName}">
+					<img alt="" src="../resources/upload/qna/${f.fileName}">
 					</c:forEach>
 				</tr>
 		</tbody>
 		</table>
 	
+	<form id="frm">
+		<input type="hidden" name="num" value="${dto.num}">
+	</form>
+	<!-- <a href="./update?num=${dto.num}">수정</a>
+	<a href="./delete?num=${dto.num}">삭제</a> -->
 	
-	<a href="./update?num=${dto.num}">수정</a>
-	<a href="./delete?num=${dto.num}">삭제</a>
 	<c:if test="${board ne 'notice'}">
-	<a href="./reply?num=${dto.num}">답글달기</a>
+	<!-- <a href="./reply?num=${dto.num}">답글달기</a> -->
+	<button id="reply" class="c1" data-url="reply">답글</button>
 	</c:if>
-	<button id="del" data-delete-name="num" data-delete-num="${dto.num}">삭제</button>
+	
+	<button id="update" data-url="update" class="c1">수정</button>
+	<button id="del" data-url="delete" data-delete-name="num" data-delete-num="${dto.num}" class="c1">삭제</button>
 
 	<script src="../resources/js/delete.js"></script>
 <%-- 	<c:if test="${dto.bookSale eq 1}">

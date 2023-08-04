@@ -79,7 +79,7 @@ public class QnaController {
 		  int result = qnaService.setUpdate(boardDTO);
 		  return "redirect:./list";
 	  }
-	  @RequestMapping(value = "delete", method = RequestMethod.GET)
+	  @RequestMapping(value = "delete", method = RequestMethod.POST)
 	  public String setDelete(BoardDTO boardDTO) throws Exception{
 		  int result=qnaService.setDelete(boardDTO);
 		  return "redirect:./list";

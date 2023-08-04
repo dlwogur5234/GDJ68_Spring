@@ -12,23 +12,15 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<h1 class="mb-5 text-center">${board} 추가</h1>
 	
-	<form class="mb-5 text-center form-control" action="./add" method="post" enctype="multipart/form-data">
-		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">제목</span><input  type="text" name="subject"></div><br>
+	<form id="frm" class="mb-5 text-center form-control" action="./add" method="post" enctype="multipart/form-data">
+		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">제목</span><input  type="text" name="subject" id="subject"></div><br>
 		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">내용</span><textarea class="input-group" rows="" cols="" name="contents"></textarea></div><br>
-		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2">작성자</span><input  type="text" name="name"></div><br>
+		<div class="input-group text-center"><span class="input-group-text" id="basic-addon2" value="${member.id}">작성자</span><input  type="text" name="name"></div><br>
 		
-		<div class="mb-3">
-				  <label for="pic" class="form-label">사진첨부</label>
-				  <input type="file" name="photos" class="form-control" id="pic" >
+			<div>
+				<button type="button" class="my btn btn-danger" id="fileBtn">File추가</button>
 			</div>
-			<div class="mb-3">
-				  <label for="pic" class="form-label">사진첨부</label>
-				  <input type="file" name="photos" class="form-control" id="pic" >
-			</div>
-			<div class="mb-3">
-				  <label for="pic" class="form-label">사진첨부</label>
-				  <input type="file" name="photos" class="form-control" id="pic" >
-			</div>
+			<div id="fileList" class="my-5"></div>
 		
 		
 		
@@ -39,12 +31,28 @@
 		</select> -->
 		</p>
 		
-		<button type="submit">등록</button>
-		<input type="submit" value="add">
-		<input type="reset" value="add">
-		<input type="button" value="add">
-	</form>
+		<button type="button" class="my btn btn-danger" id="btn">등록</button>
 
+	</form>
+	
+	<script src="/resources/js/file.js"></script>
+
+	<script type="text/javascript">
+		const btn = document.getElementById('btn');
+		const subject = document.getElementById('subject');
+		const frm = document.getElementById('frm');
+
+		btn.addEventListener('click',function(){
+			console.log(subject.value=='');
+			console.log(subject.value.length == 0);
+			if(subject.value==""){
+				alert('제목은 필수입니다.');
+				subject.focus();
+			}else{
+				frm.submit();
+			}
+		})
+	</script>
 
 </body>
 </html>

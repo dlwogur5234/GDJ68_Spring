@@ -8,33 +8,52 @@
 	<c:import url="../temp/bootStrap.jsp"></c:import>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+
+	<style>
+		.f{
+			color: red;
+		}
+		.s{
+			color: green;
+		}
+
+	</style>
 	
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="text-center">
 		<h1 class="mb-5 mt-3">회원가입</h1>
-		<form action="./join" method="post" enctype="multipart/form-data">
+		<form action="./join" method="post" id='frm' enctype="multipart/form-data">
 				<div class="mb-3">
 				    <label for="exampleInputEmail1" class="form-label">Id</label>
-				    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="id">
-				    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+				    <input type="text" class="form-control" id="id" aria-describedby="emailHelp" name="id">
+				    <div id="idHelp" class="form-text"></div>
 				  </div>
 				  <div class="mb-3">
 				    <label for="exampleInputPassword1" class="form-label">Password</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" name="pw">
+				    <input type="password" class="form-control" id="pw" name="pw">
+					<div id="pwHelp" class="form-text"></div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="exampleInputPassword1" class="form-label">Password</label>
+				    <input type="password" class="form-control" id="pw2" name="pw2">
+					<div id="pwHelp2" class="form-text"></div>
 				  </div>
 				   <div class="mb-3">
 				    <label for="exampleInputPassword1" class="form-label">Name</label>
-				    <input type="text" class="form-control" id="exampleInputPassword1" name="name">
+				    <input type="text" class="form-control" id="name" name="name">
+					<div id="NameHelp" class="form-text"></div>
 				  </div>
 				   <div class="mb-3">
 				    <label for="exampleInputPassword1" class="form-label">email</label>
-				    <input type="email" class="form-control" id="exampleInputPassword1" name="email">
+				    <input type="email" class="form-control" id="email" name="email">
+					<div id="emailHelp" class="form-text"></div>
 				  </div>
 				   <div class="mb-3">
 				    <label for="exampleInputPassword1" class="form-label">birthday</label>
-				    <input type="date" class="form-control" id="exampleInputPassword1" name="birth">
+				    <input type="date" class="form-control" id="birth" name="birth">
+					<div id="birthHelp" class="form-text"></div>
 				  </div>
 				  <div class="mb-3">
 				  <label for="pic" class="form-label">사진첨부</label>
@@ -42,8 +61,10 @@
 				  </div> 
 				  
 				 
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <button id="btn"type="button" class="btn btn-primary">등록</button>
 		</form>
 	</section>
+
+	<script src="/resources/js/member.js"></script>
 </body>
 </html>

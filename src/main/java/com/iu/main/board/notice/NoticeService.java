@@ -34,7 +34,7 @@ public class NoticeService implements BoardService {
 	@Override
 	public int setAdd(BoardDTO boardDTO,MultipartFile [] photos, HttpSession session) throws Exception {
 		
-		String path ="/resources/upload/board";
+		String path ="/resources/upload/notice";
 		
 		int result = noticeDAO.setAdd(boardDTO);
 		

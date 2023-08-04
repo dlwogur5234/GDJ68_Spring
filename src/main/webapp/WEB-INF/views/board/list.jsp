@@ -70,7 +70,7 @@
 		<h1>${num}</h1>
 	</c:forEach> --%>
 	
-	
+	<script src="/resources/js/list.js"></script>
 
 
 </body>
