@@ -36,25 +36,21 @@ for(c of delets){
 let count = 0;
 let idx = 0;
 
-{/* <div class="mb-3">
-	<label for="pic" class="form-label">사진첨부</label>
-	<input type="file" name="photos" class="form-control" id="pic" >
-</div> */}
 
-fileList.addEventListener('click',function(event){
-    console.log(event.target)
-    let cl= event.target.classList;
-    if(event.target.classList.contains('df')){
-       let deleteId=event.target.getAttribute("data-id");
-       document.getElementById(deleteId).remove();
-       count--;
-       console.log(count);
-    }
-})
+
+// fileList.addEventListener('click',function(event){
+//     console.log(event.target)
+//     let cl= event.target.classList;
+//     if(event.target.classList.contains('df')){
+//        let deleteId=event.target.getAttribute("data-id");
+//        document.getElementById(deleteId).remove();
+//        count--;
+//     }
+// })
 
 
 
-fileBtn.addEventListener('click', function(){
+/* fileBtn.addEventListener('click', function(){
     if(count < 5){
     let div1 = document.createElement('div');
     let divCls = document.createAttribute('class');
@@ -104,7 +100,54 @@ fileBtn.addEventListener('click', function(){
     }else{
         alert("파일은 5개 까지만 가능합니다");
     }
+}) */
+
+
+{/* <div class="mb-3">
+	<label for="pic" class="form-label">사진첨부</label>
+	<input type="file" name="photos" class="form-control" id="pic" >
+</div> */}
+
+// fileList.addEventListener('click',function(event){
+//     console.log(event.target)
+//     let cl= event.target.classList;
+//     if(event.target.classList.contains('df')){
+//        let deleteId=event.target.getAttribute("data-id");
+//        document.getElementById(deleteId).remove();
+//        count--;
+//     }
+// })
+
+//jquery로 변경
+
+$('#fileBtn').click(function(){
+    if(count<5){
+        let r = '<div>'
+     r = r.concat('<div class="mb-3" id="file'+idx+'">');
+    r = r.concat('<label for="pic" class="form-label">사진첨부</label>');
+    r = r.concat('<input type="file" name="photos" class="form-control" id="pic" >');
+    r = r.concat('<span class="df" data-id="file'+idx+'">x</span>')
+    r = r.concat('</div>');
+    r = r.concat('</div>')
+   
+    $('#fileList').append(r);
+   
+        
+    count++;
+    idx++;
+    }
+    else{
+        alert('파일은 5개 까지만 가능합니다')
+    } 
 })
+
+$('#fileList').on('click',".df",function(){
+    // let deleteId=$(this).attr("data-id")
+    // $("#"+deleteId).remove();
+    $(this).parent().remove();
+    count--;
+})
+
 
 
 

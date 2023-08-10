@@ -4,6 +4,23 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.bankBook.BankBookDAO">
+  <!-- Comment -->
+  <select id="getCommentTotal" parameterType="CommentDTO" resultType="Long">
+  	SELECT COUNT(COMMENTNUM) FROM COMMENT
+  	WHERE BOOKNUM = #{bookNum}
+  </select>
+  
+  <select id="getCommentList" parameterType="Map" resultType="CommentDTO"> 
+  	SELECT * FROM
+  	(SELECT ROWNUM R , C.* FROM
+  	(SELECT * FROM COMMENT
+  	WHERE BOOKNUM=#{comment.bookNum}
+  	COMMENT ORDER BY COMMENTNUM DESC)C)
+  	WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+  </select>
+  
+  
+  <!--  -->
   	<select id="getTotal" resultType="Long">
   		SELECT COUNT(BOOKNUM) FROM BANKBOOK
   	</select>

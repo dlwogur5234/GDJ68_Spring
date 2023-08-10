@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="../temp/bootStrap.jsp"></c:import>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -36,28 +37,48 @@
 			</div>
 	
 			<script>
-				const productList = document.getElementById('productList');
+				// const productList = document.getElementById('productList');
 				let page = 1;
+				
+
+				// productList.addEventListener('click',function(event){
+				// 	if(event.target.classList.contains("page-link")){
+				// 		let page=event.target.getAttribute("data-num");
+				// 		getList(page);
+				// 	}
+				// })
+
+				$('#productList').on("click",".page-link",function(event){
+					let page = $(this).attr('data-num');
+					getList(page);
+				})
+
+				// function getList(page){
+				// 	fetch("../bookAccount/list?page="+page,{
+				// 	method:"get"
+				// })
+				// .then((Response)=>{return Response.text()})
+				// .then((r) => {
+				// 	productList.innerHTML=r;
+				// 	console.log(r);
+				// })
+				// }
 				getList(1);
-
-				productList.addEventListener('click',function(event){
-					if(event.target.classList.contains("page-link")){
-						let page=event.target.getAttribute("data-num");
-						getList(page);
-					}
-				})
-
 				function getList(page){
-					fetch("../bookAccount/list?page="+page,{
-					method:"get"
-				})
-				.then((Response)=>{return Response.text()})
-				.then((r) => {
-					productList.innerHTML=r;
-					console.log(r);
-				})
-
-				}
+					$.ajax({
+						type:'GET',
+						url:"../bookAccount/list",
+						data:{
+							page:page
+						},
+						success:function(response){
+							$('#productList').html(response.trim());
+						},
+						error:function(){
+							alert('관리자에게 문의하세요')
+						}
+					})
+				}		
 
 				
 
