@@ -30,9 +30,24 @@
 				</tr>
 		</tbody>
 		</table>
+		<div>
+			<button type="button" class="my btn btn-danger" id="fileBtn">File추가</button>
+		</div>
+		<div id="fileList" class="my-5">
+		</div>
+		<div>
+			<c:forEach items="${dto.fileDTOs}" var="f">
+				<div>
+					<div class="alert alert-info" role="alert">
+						${f.originalName} 
+					</div>
+					<div class="delets" data-delete-num="${f.fileNum}">X</div>
+				</div>
+			</c:forEach>
+		</div>
 		
 		<button type="submit">수정</button>
-
+		<script src="/resources/js/file.js"></script>
 	</form>
 </body>
 </html>

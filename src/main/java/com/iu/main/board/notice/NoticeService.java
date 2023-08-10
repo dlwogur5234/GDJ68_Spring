@@ -74,4 +74,8 @@ public class NoticeService implements BoardService {
 		return noticeDAO.setHitUpdate(boardDTO);
 	}
 	
+	public int setFileDelete(NoticeFileDTO noticeFileDTO) throws Exception{
+		return noticeDAO.setFileDelete(noticeFileDTO);
+	}
+	
 }

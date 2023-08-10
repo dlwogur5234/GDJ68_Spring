@@ -29,6 +29,38 @@
 			<input type="date" name="birth" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${member.birth }" disabled="disabled">
 		</div>
 			<a  class="btn btn-primary" href="./memberUpdate">회원수정</a>
+
+			<div id="productList">
+
+
+			</div>
 	
+			<script>
+				const productList = document.getElementById('productList');
+				let page = 1;
+				getList(1);
+
+				productList.addEventListener('click',function(event){
+					if(event.target.classList.contains("page-link")){
+						let page=event.target.getAttribute("data-num");
+						getList(page);
+					}
+				})
+
+				function getList(page){
+					fetch("../bookAccount/list?page="+page,{
+					method:"get"
+				})
+				.then((Response)=>{return Response.text()})
+				.then((r) => {
+					productList.innerHTML=r;
+					console.log(r);
+				})
+
+				}
+
+				
+
+			</script>
 </body>
 </html>

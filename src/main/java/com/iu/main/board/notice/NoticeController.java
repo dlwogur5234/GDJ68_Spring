@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -87,5 +88,11 @@ public class NoticeController {
 	public String setDelete(NoticeDTO noticeDTO) throws Exception {
 		int result = noticeService.setDelete(noticeDTO);
 		return "redirect:./list";
+	}
+	@GetMapping("fileDelete")
+	public String setFileDelete(NoticeFileDTO noticeFileDTO,Model model) throws Exception{
+		int result=noticeService.setFileDelete(noticeFileDTO);
+		model.addAttribute("result", result);
+		return "commons/ajaxResult";
 	}
 }

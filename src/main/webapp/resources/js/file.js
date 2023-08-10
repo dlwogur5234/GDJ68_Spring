@@ -1,5 +1,38 @@
 const fileList = document.getElementById('fileList');
 const fileBtn = document.getElementById('fileBtn');
+const delets = document.getElementsByClassName('delets');
+
+//---------------------------------------
+for(c of delets){
+    c.addEventListener('click',function(d){
+       let num=this.getAttribute("data-delete-num");
+       let check = confirm("삭제시 복구할 수 없습니다?")
+
+       if(check){
+            fetch("./fileDelete?fileNum="+num,{method:"get"})
+            .then((result)=>{return result.text()})
+            .then((r)=>{
+                if(r.trim()=='1'){
+                    this.previousSibling.previousSibling.remove();
+                    this.remove();
+                }
+            })
+            
+       }
+       
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
 let count = 0;
 let idx = 0;
 

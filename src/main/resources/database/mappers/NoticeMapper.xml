@@ -70,4 +70,8 @@
   	<update id="setHitCount" parameterType="NoticeDTO">
   		UPDATE NOTICE SET HIT=HIT+1 WHERE NOTICENUM=#{num}
   	</update>
+  	
+  	<delete id="setFileDelete" parameterType="NoticeFileDTO">
+  		DELETE NOTICEFILE WHERE FILENUM=#{fileNum}
+  	</delete>
   </mapper>

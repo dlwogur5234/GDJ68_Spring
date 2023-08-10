@@ -12,6 +12,7 @@ const NameHelp = document.getElementById('NameHelp');
 const emailHelp = document.getElementById('emailHelp');
 const birthHelp = document.getElementById('birthHelp');
 const frm = document.getElementById('frm');
+const check = document.getElementById('check');
 
 const idresult = document.getElementById(id.id+"idHelp")
 
@@ -40,24 +41,47 @@ let checkResult=[false,false,false,false,false,false];
 id.addEventListener('blur',function(){
     /* console.log('hi')
     console.log(id.value.length); */
-    if(id.value==''){
-        id.focus();
-        idHelp.innerText='아이디를 필수로 입력하세요'
-        idHelp.className='f';
-        checkResult[0]=false;
-    }
-    else if(id.value.length>10){
-        id.focus();
-       idHelp.innerText='아이디는 10글자 미만입니다';
-        idHelp.className='f';
-        checkResult[0]=false;
-    }
-    else{
-        idHelp.innerText='사용가능한 ID 입니다';
-        idHelp.className='s';
-        checkResult[0]=true;
-    }
+
+    fetch("idCheck?id="+id.value, {method:"get"})
+        .then((response)=>{return response.text()})
+        .then((r)=>{
+            console.log(r);
+            if(r.trim()=='1'){
+                alert('중복x');
+                if(id.value==''){
+                    id.focus();
+                    idHelp.innerText='아이디를 필수로 입력하세요'
+                    idHelp.className='f';
+                    checkResult[0]=false;
+                }
+                else if(id.value.length>10){
+                    id.focus();
+                   idHelp.innerText='아이디는 10글자 미만입니다';
+                    idHelp.className='f';
+                    checkResult[0]=false;
+                    checkResult[1]=false;
+                }
+                
+                else{
+                    idHelp.innerText='사용가능한 ID 입니다';
+                    idHelp.className='s';
+                    checkResult[0]=true;
+                    checkResult[1]=true;
+                }
+            }
+            else{
+                idHelp.innerHTML="이미 사용중인 ID입니다"
+                idHelp.className='f';
+                checkResult[0]=false;
+                checkResult[1]=false;
+            }
+        })
+
 })
+
+
+
+
 
 // pw : 빈 x 6글자 이상 12미만
 // 입력이 끝나고 난후
@@ -66,19 +90,19 @@ pw.addEventListener('blur',function(){
     if(pw.value.length>5&&pw.value.length<12){
         pwResult.innerHTML="올바른 비밀번호 입니다";
         pwResult.className="s";
-        checkResult[1]=true;
+        checkResult[2]=true;
     }
     else{
         pwResult.innerText="비밀번호는 6글자 이상 12미만 입니다";
         pwResult.className="f";
         // pw.focus();
-        checkResult[1]=false;
+        checkResult[2]=false;
     }
 })
 
 pw.addEventListener('change',function(){
     pw2.value='';
-    checkResult[2]=false;
+    checkResult[3]=false;
     pwHelp2.innerHTML='';
 })
 
@@ -113,12 +137,12 @@ pw2.addEventListener('keyup',function(){
         pwHelp2.innerText='비밀번호가 맞지 않습니다';
         pwHelp2.className='f';
         // pw2.focus();
-        checkResult[2]=false;
+        checkResult[3]=false;
     }
     else{
         pwHelp2.innerText='비밀번호가 일치합니다';
         pwHelp2.className='s';
-        checkResult[2]=true;
+        checkResult[3]=true;
     }
 })
 
@@ -128,11 +152,11 @@ names.addEventListener('blur',function(){
     if(names.value==''){
         NameHelp.innerText='이름을 필수로 입력하세요';
         // names.focus();
-        checkResult[3]=false;
+        checkResult[4]=false;
     }
     else{
         NameHelp.innerText='';
-        checkResult[3]=true;
+        checkResult[4]=true;
     }
 })
 //--------------- name check
@@ -147,7 +171,7 @@ names.addEventListener('blur',function(){
 //     }
 // })
 // //비어있는지 체크하는 함수
-function ematycheck(element) {
+function emptyCheck(element) {
     if(element.value==''){
         return true;
     }
@@ -161,24 +185,24 @@ email.addEventListener('blur',function(){
     if(email.value==''){
         emailHelp.innerText='이메일을 필수로 입력하세요';
         // email.focus();
-        checkResult[4]=false;
+        checkResult[5]=false;
     }
     else{
         emailHelp.innerText='';
-        checkResult[4]=true;
+        checkResult[5]=true;
     }
 })
 // Birth:빈x
 // 회원가입버튼을 클릭했을때
 
-birth.addEventListener('click',function(){
+birth.addEventListener('change',function(){
     let check = emptyCheck(birth);
     const birthHelp = document.getElementById(birth.id+"Help");
     birthHelp.innerText='생년월일을 필수로 입력하세요';
-    
+    checkResult[6]=false;
     if(!check){
         birthHelp.innerText='생년월일 확인';
-        checkResult[5]=true;
+        checkResult[6]=true;
     }
 
 })
@@ -201,7 +225,7 @@ btn.addEventListener('click', function(){
     if(!c){
         //form전송
         console.log("form전송");
-       // frm.submit();
+       frm.submit();
     }
     else{
         alert("필수항목 입력")

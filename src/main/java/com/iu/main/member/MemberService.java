@@ -38,7 +38,10 @@ public class MemberService {
 	}
 	
 	
-	
+	public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception{
+		System.out.println(memberDTO);
+		return memberDAO.getIdCheck(memberDTO);
+	}
 	
 	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception{
 		

@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +45,18 @@ public class MemberController {
 			session.setAttribute("member", memberDTO);
 		}
 		return "redirect:/";
+	}
+	@GetMapping("idCheck")
+	public String getIdCheck(MemberDTO memberDTO, Model model) throws Exception{
+		memberDTO = memberService.getIdCheck(memberDTO);
+		System.out.println(memberDTO);
+		int result = 0; //중복
+		if(memberDTO == null) {
+			result=1; //증복x
+		}
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
 	}
 	@RequestMapping(value = "logout")
 	public String logout(HttpSession session) throws Exception{

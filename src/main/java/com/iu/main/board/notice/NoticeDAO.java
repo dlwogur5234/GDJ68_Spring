@@ -60,4 +60,8 @@ public class NoticeDAO implements BoardDAO{
 		
 		return 0;
 	}
+	
+	public int setFileDelete(NoticeFileDTO noticeFileDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setFileDelete", noticeFileDTO);
+	}
 }

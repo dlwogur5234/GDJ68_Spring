@@ -56,7 +56,7 @@
 		    </c:forEach>
 		    
 		    <li class="page-item ${pager.next?'':'disabled'}">
-		      <a class="page-link" href="./list?page=${pager.page+1}" aria-label="Next">
+		      <a class="page-link" href="./list?page=${pager.page+1}" data-num="${pager.page+1}" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
@@ -84,6 +84,9 @@
 		<br><a href="/bankbook/add" class="btn btn-danger">상품등록</a>
 	</section>		
 	
+	<button id="list">GetList</button>
+	
+	<script type="text/javascript" src="../resources/js/bookList.js"></script>
 <%-- 
 	<c:forEach begin="1" end="10" var="num" step="4">
 		<h1>${num}</h1>
