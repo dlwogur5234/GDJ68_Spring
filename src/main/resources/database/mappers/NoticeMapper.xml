@@ -22,17 +22,27 @@
   	
   	
   	<select id="getDetail" resultMap="getDetailResult" parameterType="NoticeDTO">
-		SELECT NT.*,NF.*
+	<!-- 	SELECT NT.*,NF.*
 		FROM NOTICE NT
 		LEFT OUTER JOIN NOTICEFILE NF
 		ON (NT.NOTICENUM = NF.NOTICENUM)
-		WHERE NT.NOTICENUM = #{num}		
+		WHERE NT.NOTICENUM = #{num} -->	
+		
+		SELECT 
+  			* 
+  		FROM
+  			NOTICE N
+  			LEFT JOIN
+  			NOTICEFILE NF
+  			ON N.NOTICENUM=NF.NOTICENUM
+  		WHERE
+  			N.NOTICENUM=#{num}	
   	</select>
   	
   	<resultMap type="NoticeDTO" id="getDetailResult">
   		<id column="NOTICENUM" property="num"/>
   		<result column="SUBJECT" property="subject"/>
-  		<result column="CONTENTES" property="contents"/>
+  		<result column="CONTENTS" property="contents"/>
   		<result column="NAME" property="name"/>
   		<result column="CREATEDATE" property="createDate"/>
   		<result column="HIT" property="hit"/>

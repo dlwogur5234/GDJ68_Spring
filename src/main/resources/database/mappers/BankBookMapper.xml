@@ -6,18 +6,22 @@
   <mapper namespace="com.iu.main.bankBook.BankBookDAO">
   <!-- Comment -->
   <select id="getCommentTotal" parameterType="CommentDTO" resultType="Long">
-  	SELECT COUNT(COMMENTNUM) FROM COMMENT
+  	SELECT COUNT(COMMENTNUM) FROM COMMENTS
   	WHERE BOOKNUM = #{bookNum}
   </select>
   
   <select id="getCommentList" parameterType="Map" resultType="CommentDTO"> 
   	SELECT * FROM
   	(SELECT ROWNUM R , C.* FROM
-  	(SELECT * FROM COMMENT
+  	(SELECT * FROM COMMENTS
   	WHERE BOOKNUM=#{comment.bookNum}
-  	COMMENT ORDER BY COMMENTNUM DESC)C)
+  	ORDER BY COMMENTNUM DESC)C)
   	WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   </select>
+  
+  <insert id="setCommentAdd" parameterType="CommentDTO">
+  		INSERT INTO COMMENTS (COMMENTNUM,ID,BOOKNUM,COMMENTCONTENTS,COMMENTDATE) VALUES (COMMENTS_SEQ.NEXTVAL,#{id},#{bookNum},#{commentContents},sysdate)
+  </insert>
   
   
   <!--  -->

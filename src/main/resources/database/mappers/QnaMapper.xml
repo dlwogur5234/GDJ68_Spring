@@ -45,7 +45,7 @@
   	<resultMap type="QnaDTO" id="getDetailResult">
   		<id column="NUM" property="num"/>
   		<result column="SUBJECT" property="subject"/>
-  		<result column="CONTENTES" property="contents"/>
+  		<result column="CONTENTS" property="contents"/>
   		<result column="NAME" property="name"/>
   		<result column="CREATEDATE" property="createDate"/>
   		<result column="HIT" property="hit"/>

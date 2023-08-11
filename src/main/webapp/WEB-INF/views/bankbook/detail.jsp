@@ -47,13 +47,16 @@
 	<!-- 댓글 -->
 	<div>
 		<div class="mb-3">		
-			<textarea type="password" name="accountPw" class="form-control" id="comment" placeholder=></textarea>
-			<button id="commentAdd">댓글목록</button>
+			<textarea  name="commentContents" class="form-control" id="comment"></textarea>
+			<button id="commentAdd">댓글등록</button>
 		</div>
 		<div>
-			<table id="commentList">
+			<table id="commentList" class="table table-success table-striped">
 				
 			</table>
+			<div id="more">
+
+			</div>
 
 		</div>
 	</div>
@@ -94,7 +97,43 @@
 --%>
 
 	<script type="text/javascript">
-		getCommentList($('#add').attr('data-add-num'),1);
+		let bn = $('#add').attr('data-add-num');
+		let pageNum = 1;
+		let tp = 0;
+		getCommentList(bn,pageNum);
+
+		$('#commentAdd').click(function(){
+			let contents=$('#comment').val();
+			$.ajax({
+				type:'post',
+				url:'commentAdd',
+				data:{
+					bookNum:bn,
+					commentContents:contents
+				},
+				success:function(result){
+					if(result.trim()>0){
+						alert('댓글등록완료');
+						$('#commentList').html('');
+						$('#comment').val('');
+						pageNum=1;
+						getCommentList(bn,1);
+					}
+				}
+			})
+		})
+		
+		
+
+		$('#more').on('click',"#moreButton",function(){
+			if(pageNum==tp){
+				alert('마지막 페이지입니다.')
+				return
+			}
+			pageNum++;
+			getCommentList(bn,pageNum);
+		})
+		
 
 		function getCommentList(bookNum,page){
 			$.ajax({
@@ -106,6 +145,12 @@
 				},
 				success:function(result){
 					$('#commentList').append(result);
+					tp = ($('#totalPage').attr("data-totalPage"))
+					
+					let button = '<button id="moreButton">더보기('+pageNum+'/'+tp+')</button>'
+
+		
+					$('#more').html(button);
 				},
 				error:function(){
 					alert("관리자에게 문의하세요")

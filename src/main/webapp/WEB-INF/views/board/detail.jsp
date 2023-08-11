@@ -21,6 +21,7 @@
 			<th>작성자</th>
 			<th>작성일</th>
 			<th>조회수</th>
+			
 		</thead>
 		<tbody>
 				<tr>
@@ -30,13 +31,25 @@
 					<td>${dto.createDate}</td>
 					<td>${dto.hit} </td>
 					
+					
+					
 					<c:forEach items="${dto.fileDTOs}" var="f">
 					<img src="../resources/upload/notice/${f.fileName}">
 					<img alt="" src="../resources/upload/qna/${f.fileName}">
 					</c:forEach>
 				</tr>
-		</tbody>
-		</table>
+				</tbody>
+			</table>
+				<table class="table table-dark table-hover">
+				  <tr>
+				   		<th>내용</th>
+				  </tr>
+				  <tr>
+				    <td>${dto.contents}</td>
+				  </tr>
+				</table>
+
+		
 	
 	<form id="frm">
 		<input type="hidden" name="num" value="${dto.num}">

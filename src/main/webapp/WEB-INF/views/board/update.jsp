@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="../temp/bootStrap.jsp"></c:import>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -26,7 +28,7 @@
 					<td><input type="text" name="subject" value="${dto.subject}"></td>
 					<td>${dto.name}</td>
 					<td><input type="date" name="createDate" value="${dto.createDate}"></td>
-					<td><textarea rows="" cols="" name="contents">${dto.contents}</textarea></td>
+					<td><textarea rows="" cols="" name="contents" id="contents">${dto.contents}</textarea></td>
 				</tr>
 		</tbody>
 		</table>
@@ -47,6 +49,10 @@
 		</div>
 		
 		<button type="submit">수정</button>
+		<script type="text/javascript">
+			$('#contents').summernote('code','기존내용');
+		
+		</script>
 		<script src="/resources/js/file.js"></script>
 	</form>
 </body>

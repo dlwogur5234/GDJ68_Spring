@@ -9,8 +9,21 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.main.file.FileDTO;
+
 @Component
 public class FileManager {
+	
+	//fileDelete
+		public boolean fileDelete(FileDTO fileDTO, String path,HttpSession session ) {
+			//1. 삭제할 폴더의 실제 경로
+			path = session.getServletContext().getRealPath(path);
+			
+			File file = new File(path, fileDTO.getFileName());
+			
+			return file.delete();
+			
+		}
 	
 	//fileSave
 	public String fileSave(String path,HttpSession session, MultipartFile multipartFile) throws Exception{
