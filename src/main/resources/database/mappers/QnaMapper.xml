@@ -72,7 +72,7 @@
   	
   	
   	 <update id="setUpdate" parameterType="QnaDTO">
-  		UPDATE QNA SET SUBJECT = #{subject}, CONTENTS=#{contents} WHERE NUM = #{num}
+  		UPDATE QNA SET SUBJECT = #{subject}, CONTENTS=#{contents} WHERE NUM = #{num} AND NAME=#{name}
   	</update>
   	
   	<insert id="setReplyAdd" parameterType="QnaDTO">
@@ -87,7 +87,7 @@
   	</update>
   	
   	<delete id="setDelete" parameterType="QnaDTO">
-  		DELETE QNA WHERE NUM = #{num}
+  		DELETE QNA WHERE NUM = #{num} AND NAME=#{name}
   	</delete>
   	
  

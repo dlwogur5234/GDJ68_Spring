@@ -63,8 +63,9 @@
 		
 		  </ul>
 		</nav>
-	
+	<c:if test="${not empty member}">
 	<a class="btn btn-outline-secondary" href="./add" >공지추가</a>
+	</c:if>
 	</section>
 <%-- 	<c:forEach begin="1" step="2" end="10" var="num">
 		<h1>${num}</h1>

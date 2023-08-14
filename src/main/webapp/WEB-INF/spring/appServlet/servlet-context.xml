@@ -21,6 +21,54 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Interceptor 설정 -->
+	
+	<beans:bean class="com.iu.main.interceptors.InterceptorTest1" id="interceptorTest1"></beans:bean>
+	<interceptors>
+<!-- 		<interceptor> 1.어노테이션 component 사용
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/add"/>
+			<beans:ref bean="interceptorTest1"/>
+		</interceptor> -->
+		
+		<!-- <interceptor>
+			<mapping path="/notice/*"/>  2. beans:nean으로 객체생성
+			<beans:bean class="com.iu.main.interceptors.InterceptorTest1">	
+			</beans:bean>
+		</interceptor> -->
+		
+		<!-- <interceptor>객체 선언후 bean사용
+			<mapping path="/notice/*"/>
+			<mapping path="/qna/*"/>
+			<beans:ref bean="interceptorTest1"/>
+		</interceptor> -->
+		
+		<interceptor>
+			<mapping path="/qna/*"/>
+			<mapping path="/member/*"/>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/notice/detail"/>
+			<exclude-mapping path="/member/login"/>
+			<exclude-mapping path="/member/logout"/>
+			<exclude-mapping path="/member/join"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notice/update"/>
+			<mapping path="/qna/update"/>
+			<beans:bean class="com.iu.main.interceptors.OwnerInterceptor"></beans:bean>
+		</interceptor>
+		<interceptor>
+			<mapping path="/notice/add"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
+			
+			<beans:ref bean="adminInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<context:component-scan base-package="com.iu.main" />
 	
 	

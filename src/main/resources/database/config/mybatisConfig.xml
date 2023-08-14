@@ -19,5 +19,6 @@
 		<typeAlias type="com.iu.main.util.Pager" alias="Pager"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
 		<typeAlias type="com.iu.main.bankBook.comment.CommentDTO" alias="CommentDTO"/>
+		<typeAlias type="com.iu.main.member.RoleDTO" alias="RoleDTO"/>
 	</typeAliases>
 </configuration>

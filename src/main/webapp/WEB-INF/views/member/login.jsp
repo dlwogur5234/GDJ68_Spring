@@ -12,7 +12,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<h1>로그인</h1>
-	<form action="./login.do" method="post">
+	<form action="./login" method="post">
 		<div class="mb-3">
 			<label for="exampleInputEmail1" class="form-label">ID</label>	
 			<input type="text" name="id" class="form-control" value="${dlwogur}" id="exampleInputEmail1" aria-describedby="emailHelp">
