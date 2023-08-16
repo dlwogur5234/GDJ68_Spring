@@ -26,7 +26,7 @@ public class OwnerInterceptor  extends HandlerInterceptorAdapter{
 		BoardDTO boardDTO =(BoardDTO)map.get("dto");
 		
 		if(!memberDTO.getId().equals(boardDTO.getName())) {
-			modelAndView.addObject("message", "작성자만 가능합니다");
+			modelAndView.addObject("message", "로그인 필요");
 			modelAndView.addObject("url", "./list");
 			modelAndView.setViewName("commons/result");
 		}

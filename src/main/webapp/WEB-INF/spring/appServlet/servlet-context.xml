@@ -47,6 +47,7 @@
 			<mapping path="/qna/*"/>
 			<mapping path="/member/*"/>
 			<mapping path="/notice/*"/>
+			<exclude-mapping path="/qna/list"/>
 			<exclude-mapping path="/notice/list"/>
 			<exclude-mapping path="/notice/detail"/>
 			<exclude-mapping path="/member/login"/>
